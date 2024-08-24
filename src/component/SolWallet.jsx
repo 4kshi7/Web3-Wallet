@@ -27,16 +27,28 @@ export const SolWallet = ({ mnemonic }) => {
   };
 
   return (
-    <>
-      <button onClick={generate}>Add Solana Wallet</button>
+    <div>
+      <button
+        onClick={generate}
+        className="w-full bg-gray-400 text-white py-2 px-4 rounded-md hover:bg-black transition duration-300 mb-4"
+      >
+        Add Solana Wallet
+      </button>
 
-      {publicKeys.map((key, idx) => (
-        <div key={idx}>
-          Wallet {idx} - {key}
+      {publicKeys.length > 0 && (
+        <div>
+          <h2 className="text-lg font-semibold mb-2">Your Wallets:</h2>
+          <ul className="space-y-2">
+            {publicKeys.map((key, idx) => (
+              <li key={idx} className="bg-gray-100 p-3 rounded-md text-sm break-all">
+                <span className="font-semibold">Wallet {idx + 1}:</span> {key}
+              </li>
+            ))}
+          </ul>
         </div>
-      ))}
+      )}
 
-      <ToastContainer />
-    </>
+      <ToastContainer position="bottom-right" />
+    </div>
   );
 };
